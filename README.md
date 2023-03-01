@@ -15,6 +15,14 @@ app:
 - `only support tencent domain`
 - Can automatically obtain the public network IP address of this machine and regularly modify the specified domain name.
 
+## compile
+> Compile to linux executable program ： open Terminal
+```bash
+set GOARCH=amd64
+set GOOS=linux
+go build -o myddns main.go
+```
+
 ## build docker image
 >` docker build -t myddns:0.1 .`
 ```bash
