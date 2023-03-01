@@ -2,7 +2,7 @@
 use golang implement tencent domain ddns 
 
 ## config file
-> create config file `config.yaml`
+> Create a configuration file`config.yaml` and place it in the same directory as the program.
 ```yaml
 app:
   sid: tencent SecretId
