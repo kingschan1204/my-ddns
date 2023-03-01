@@ -13,6 +13,8 @@ type appConfig struct {
 	SecretKey string `yaml:"skey"`
 	//主域名
 	Domain string `yaml:"domain"`
+	// 要更新的域名前缀  如果是顶级域名则是填@
+	Target string `yaml:"target"`
 }
 
 type appYaml struct {
