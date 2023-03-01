@@ -10,3 +10,7 @@ app:
   domain: you domain
   target: modify domain of prefix
 ```
+
+## Future
+- `only support tencent domain`
+- Can automatically obtain the public network IP address of this machine and regularly modify the specified domain name.
