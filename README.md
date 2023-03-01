@@ -8,4 +8,5 @@ app:
   sid: tencent SecretId
   skey: tencent SecretKey
   domain: you domain
+  target: modify domain of prefix
 ```
