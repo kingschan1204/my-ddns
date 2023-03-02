@@ -58,7 +58,7 @@ func modifyTask() {
 
 	ip := myapi.GetInterNetIp()
 	if *item.Value == ip {
-		log.Print("本机公网Ip: ", ip, " -> 地址未改变,无需修改！")
+		//log.Print("本机公网Ip: ", ip, " -> 地址未改变,无需修改！")
 		return
 	}
 	myapi.ModifyIp(myconf.App.SecretId, myconf.App.SecretKey, myconf.App.Domain, myconf.App.Target, ip, *item.RecordId)
