@@ -84,5 +84,5 @@ func ModifyIp(sid string, skey string, domain string, target string, ip string, 
 		panic(err)
 	}
 	// 输出json格式的字符串回包
-	log.Print("修改完成：%s", response.ToJsonString())
+	log.Print("ip地址更新为：", ip, " -> ", response.ToJsonString())
 }
