@@ -62,4 +62,6 @@ func modifyTask() {
 		return
 	}
 	myapi.ModifyIp(myconf.App.SecretId, myconf.App.SecretKey, myconf.App.Domain, myconf.App.Target, ip, *item.RecordId)
+	//更新ip后重置
+	item.RecordId = nil
 }
