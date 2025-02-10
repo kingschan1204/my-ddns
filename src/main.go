@@ -6,14 +6,26 @@ import (
 	"github.com/robfig/cron/v3"
 	dnspod "github.com/tencentcloud/tencentcloud-sdk-go/tencentcloud/dnspod/v20210323"
 	"log"
-	"my-ddns/src/myapi"
-	"my-ddns/src/myconf"
+	"myddns/myapi"
+	"myddns/myconf"
+	"os"
 )
 
 // 记录需要修改域名的最新状态
 var item dnspod.RecordListItem
 
 func main() {
+
+	// 检查是否提供了文件路径参数
+	if len(os.Args) < 2 {
+		fmt.Println("Usage: myddns <file-path>")
+		return
+	}
+	// 获取文件路径
+	filePath := os.Args[1]
+	log.Println("配置文件路径:", filePath)
+	// 调用函数并传入文件路径
+	myconf.InitConfig(filePath)
 	modifyTask()
 	// 新建一个定时任务对象
 	// 根据cron表达式进行时间调度，cron可以精确到秒，大部分表达式格式也是从秒开始。
@@ -40,13 +52,13 @@ func main() {
 // 更新任务
 func modifyTask() {
 	if item.RecordId == nil {
-		log.Println("获取域名记录列表")
+		//log.Println("获取域名记录列表")
 		list, _ := myapi.RecordList(myconf.App.SecretId, myconf.App.SecretKey, myconf.App.Domain)
 		for i := 0; i < len(list); i++ {
 			b, _ := json.Marshal(*list[i])
-			fmt.Printf("%s \n", b)
 			if *list[i].Name == myconf.App.Target {
 				item = *list[i]
+				log.Printf("%s \n", b)
 			}
 		}
 	}

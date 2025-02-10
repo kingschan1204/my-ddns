@@ -11,4 +11,4 @@ ENV LC_ALL C.UTF-8
 ENV TZ Asia/Shanghai
 WORKDIR /opt/myddns
 RUN chmod -R 755 /opt/myddns
-CMD ["./myddns"]
+CMD ["./myddns ./config.yaml"]

@@ -1,9 +1,8 @@
 package myconf
 
 import (
-	"fmt"
 	"gopkg.in/yaml.v2"
-	"io/ioutil"
+	"io"
 	"log"
 	"os"
 )
@@ -17,21 +16,28 @@ type appConfig struct {
 	Target string `yaml:"target"`
 }
 
-type appYaml struct {
+type AppYaml struct {
 	App appConfig `yaml:"app"`
 }
 
 var App appConfig
 
-func init() {
+// InitConfig 初始化配置信息
+// filePath 配置yaml文件路径
+func InitConfig(filePath string) {
 	//获取当前目录
 	//fmt.Println("1.初始化配置信息.")
-	fmt.Println(os.Getwd())
-	filename := "./config.yaml"
-	y := new(appYaml)
-	yamlFile, err := ioutil.ReadFile(filename)
+	//fmt.Println(os.Getwd())
+	//filename := "./config.yaml"
+	file, err := os.Open(filePath)
 	if err != nil {
-		fmt.Printf("读取配置文件 myconf.yaml 失败 %v\n", err)
+		log.Fatalf("Error opening file:%v\n", err)
+		return
+	}
+	y := new(AppYaml)
+	yamlFile, err := io.ReadAll(file)
+	if err != nil {
+		log.Fatalf("读取配置文件 config.yaml 失败 %v\n", err)
 	}
 	err1 := yaml.Unmarshal(yamlFile, y)
 	if err1 != nil {
