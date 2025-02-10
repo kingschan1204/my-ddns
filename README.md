@@ -59,7 +59,13 @@ kingschan@server:/home/kingschan/myddns$ docker build -t myddns:0.1 .
 
 ## enable linux service 
 ```
+mkdir -p /usr/local/myddns
+
+cp ./myddns /usr/local/myddns
+cp./config.yaml /usr/local/myddns
+
 cp ./myddns.service /etc/systemd/system
+
 systemctl daemon-reload
 systemctl start myddns
 systemctl status myddns
