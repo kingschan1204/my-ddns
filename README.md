@@ -55,3 +55,13 @@ kingschan@server:/home/kingschan/myddns$ docker build -t myddns:0.1 .
 ## run in docker
 > `docker run -d  --name myddns --restart=always  myddns:0.1`
 > > job done !
+
+
+## enable linux service 
+```
+cp ./myddns.service /etc/systemd/system
+systemctl daemon-reload
+systemctl start myddns
+systemctl status myddns
+systemctl enable myddns
+```

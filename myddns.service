@@ -1,0 +1,12 @@
+[Unit]
+Description=My DDNS Go Program
+After=network.target
+
+[Service]
+ExecStart=/usr/local/myddns/myddns /usr/local/myddns/config.yaml
+Restart=always
+User=nobody
+Group=nogroup
+
+[Install]
+WantedBy=multi-user.target
